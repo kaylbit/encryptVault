@@ -25,28 +25,32 @@ def introUpdate():
 # -------------------------
 def process(userAction):
     global loopStop
-    if userAction == 1:
+    if userAction == '1':
         encrypt()
-    elif userAction == 2:
+    elif userAction == '2':
         decrypt()
-    elif userAction == 3:
+    elif userAction == '3':
         encryptedSaves()
-    elif userAction == 4:
+    elif userAction == '4':
+        print("-" * 20)
         print("Thank you for testing!!!")
         loopStop = True
     else:
+        print("-" * 20)
         print("Error input")
-        process(int(input("Choose again: ")))
+        process(input("Choose again: "))
         
 # -------------------------
 # Function: encrypt
 # Description: Encrypts user input with Base64 and gives option to save
 # -------------------------
 def encrypt():
+    print("-" * 20)
     inputUser = input("Input word to encrypt: ")
     encoded = base64.b64encode(inputUser.encode())  # Encode string -> Base64
+    print("-" * 20)
     print(f"Input has been encrypted to '{encoded.decode()}'.")
-    
+    print("-" * 20)
     # Option to save encrypted string
     saved = input("Add to save?[y/n]: ").lower()
     if saved == "y" or saved == "yes":    
@@ -64,6 +68,7 @@ def encrypt():
 # -------------------------
 def decryptProcess(data):
     data_decode = base64.b64decode(data)
+    print("-" * 20)
     print(f"Input has been decrypted to '{data_decode.decode()}'")
 
 # -------------------------
@@ -137,5 +142,5 @@ def emptylist():
 # -------------------------
 while not loopStop: 
     introUpdate()
-    userAction = int(input("\nChoose an action [1, 2, 3, 4]: "))
+    userAction = str(input("\nChoose an action [1, 2, 3, 4]: "))
     process(userAction)
